@@ -1,9 +1,20 @@
-# How to reduce GrokBot usage by changing the architecture
+# Durable state for agents: query completed work before inference
 
-On this repeated-work replay, 19/20 turns avoided inference (95%). That number
-comes from changing the architecture, not from discounting a single new task.
+Always-on agents keep paying for work that already finished. A first look
+at a repo or bug should cost a full model call. Later turns on the same
+domain usually should not.
 
-> GrokBot should treat context as a cache, not as its database.
+Completed findings live in a local SQLite store (claims, artifacts,
+receipts). Every turn queries that store first. A hit returns the stored
+result with no model call. A miss builds a small bounded context, infers
+once, then persists.
+
+This repo is the architecture note plus a captured receipt ledger, not a
+drop-in you can run. The 19/20 (95%) figure is a constructed repeated-work
+replay, not a live mixed workload (that mix was 1 hit / 51 turns). Details
+are in [Measured repeated-work replay](#measured-repeated-work-replay).
+
+> Treat context as a cache, not as its database.
 
 The expensive design is a permanent head seat that carries permanent role
 runtimes, internal transcripts, and self-correction history. Each new turn
@@ -188,16 +199,16 @@ no further ChatFn calls.
 This is not Cary Palmer's live mixed ledger. That mix was 1 hit / 51 turns, and
 it is not this workload.
 
-This 95% is a session-level hit rate across a day of work, not a discount on a
-single new task. The first look at a repo, paper, or bug still pays a full
+This 95% is a session-level hit rate on that constructed replay, not a discount
+on a single new task. The first look at a repo, paper, or bug still pays a full
 mouth call. Later turns that come back to that same finding query the store
-and skip the model. A typical day is mostly those later turns; that mix is why
-19 of 20 turns avoided inference. One novel task is still one paid call (100%
-of that turn). Do not read this as "per task 95% off" or as "Grok Bot users
-always save 95%."
+and skip the model. One novel task is still one paid call (100% of that turn).
+Do not read this as "per task 95% off" or as "Grok Bot users always save 95%."
 
-The captured ledger is [`repeated-work-ledger.json`](./repeated-work-ledger.json).
-Re-run from the Automaton checkout:
+The captured ledger is in this repo:
+[`repeated-work-ledger.json`](./repeated-work-ledger.json).
+
+The replay script is not. It lives in the Automaton tree:
 
 ```sh
 bun scripts/replay-repeated-work.ts
@@ -205,7 +216,7 @@ bun scripts/replay-repeated-work.ts
 
 That script uses a temp sqlite path. It does not read `~/.automaton/staff.sqlite`.
 
-## The short prescription for Cursor
+## Prescription
 
 > Treat context as a cache, not as the database. Make agent roles ephemeral.
 > Persist sessions, claims, task results, artifacts, provenance, and usage
@@ -217,4 +228,3 @@ That script uses a temp sqlite path. It does not read `~/.automaton/staff.sqlite
 > tokens, and dollars honestly.
 
 This is a backend and ownership change, not a summarization feature.
-
