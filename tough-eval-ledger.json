@@ -1,0 +1,6640 @@
+{
+  "workload": {
+    "description": "Seeded mixed recall workload against Automaton ensureMouth + StaffStore + queryFirst. Several hundred turns: paraphrases of stored findings, follow-ups, changed requirements, evolved repositories, stale findings, conflicting claims, and unrelated questions. Measures current gates (RECALL_REQUEST, uniqueSpeakable, skip stale, taskKey, owner) without retuning queryFirst. Temp sqlite only; never ~/.automaton/staff.sqlite. This is not the 19/20 repeated-work replay and does not validate 95%.",
+    "seed": 20260827,
+    "turns": 330,
+    "interpretation": "This mix will NOT be 95%. 95% was the easy repeated-domain recall; this scores safety of reuse. False hits are more important than avoidance. 40% avoidance with ~0 false hits is better than 90% that sometimes serves the wrong commit. A conservative miss is not a false hit. queryFirst was not retuned to inflate avoidance.",
+    "liveMixedLedger": {
+      "hits": 1,
+      "turns": 51,
+      "note": "Cary Palmer live ~/.automaton/staff.sqlite mix is 1 hit / 51 turns. That mix is not this workload."
+    },
+    "repeatedWorkReplay": {
+      "hits": 19,
+      "turns": 20,
+      "note": "The 19/20 (95%) figure is a separate easy repeated-domain recall. This eval does not validate 95%."
+    },
+    "seededClaims": [
+      {
+        "ownerAgentId": "kernel",
+        "text": "The ledger replay is deterministic.",
+        "source": "job",
+        "jobId": "job_ledger",
+        "taskKey": "kernel:analyze:ledger replay",
+        "repo": "dugout",
+        "revision": "a11a11a",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The parser timeout is thirty milliseconds.",
+        "source": "job",
+        "jobId": "job_parser",
+        "taskKey": "kernel:analyze:parser timeout",
+        "repo": "marionette",
+        "revision": "b22b22b",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "research",
+        "text": "The cite catalog is complete.",
+        "source": "job",
+        "jobId": "job_cite",
+        "taskKey": "research:analyze:cite catalog",
+        "repo": "handbook",
+        "revision": "c33c33c",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The auth cookie is httponly.",
+        "source": "job",
+        "jobId": "job_auth",
+        "taskKey": "kernel:analyze:auth cookie",
+        "repo": "puppetmaster",
+        "revision": "d44d44d",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "research",
+        "text": "The rfc draft needs one more example.",
+        "source": "job",
+        "jobId": "job_rfc",
+        "taskKey": "research:analyze:rfc draft",
+        "repo": "handbook",
+        "revision": "e55e55e",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The queue drain is single threaded.",
+        "source": "job",
+        "jobId": "job_queue",
+        "taskKey": "kernel:analyze:queue drain",
+        "repo": "dugout",
+        "revision": "f66f66f",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The blob clock uses monotonic ticks.",
+        "source": "job",
+        "jobId": "job_blob",
+        "taskKey": "kernel:analyze:blob clock",
+        "repo": "marionette",
+        "revision": "111aaaa",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "research",
+        "text": "The rank order prefers recency.",
+        "source": "job",
+        "jobId": "job_rank",
+        "taskKey": "research:analyze:rank order",
+        "repo": "handbook",
+        "revision": "222bbbb",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The lease expiry is five minutes.",
+        "source": "job",
+        "jobId": "job_lease",
+        "taskKey": "kernel:analyze:lease expiry",
+        "repo": "puppetmaster",
+        "revision": "333cccc",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "research",
+        "text": "The source map omits generated columns.",
+        "source": "job",
+        "jobId": "job_source",
+        "taskKey": "research:analyze:source map",
+        "repo": "handbook",
+        "revision": "444dddd",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The bloom filter is enabled.",
+        "source": "job",
+        "jobId": "job_bloom",
+        "taskKey": "kernel:analyze:bloom filter",
+        "repo": "dugout",
+        "revision": "555eeee",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "research",
+        "text": "The style guide bans trailing commas.",
+        "source": "job",
+        "jobId": "job_style",
+        "taskKey": "research:analyze:style guide",
+        "repo": "handbook",
+        "revision": "666ffff",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The widget paint is gpu bound.",
+        "source": "job",
+        "jobId": "job_paint_old",
+        "taskKey": "kernel:analyze:widget paint",
+        "repo": "dugout",
+        "revision": "c0ffee1",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The widget paint is cpu bound.",
+        "source": "job",
+        "jobId": "job_paint_new",
+        "taskKey": "kernel:analyze:widget paint",
+        "repo": "dugout",
+        "revision": "c0ffee2",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The socket backlog is 128.",
+        "source": "job",
+        "jobId": "job_sock_old",
+        "taskKey": "kernel:analyze:socket backlog",
+        "repo": "marionette",
+        "revision": "deadbe1",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The socket backlog is 512.",
+        "source": "job",
+        "jobId": "job_sock_new",
+        "taskKey": "kernel:analyze:socket backlog",
+        "repo": "marionette",
+        "revision": "deadbe2",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "research",
+        "text": "The quota window is one hour.",
+        "source": "job",
+        "jobId": "job_quota_old",
+        "taskKey": "research:analyze:quota window",
+        "repo": "handbook",
+        "revision": "badc0d1",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "research",
+        "text": "The quota window is fifteen minutes.",
+        "source": "job",
+        "jobId": "job_quota_new",
+        "taskKey": "research:analyze:quota window",
+        "repo": "handbook",
+        "revision": "badc0d2",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The cron window is nightly.",
+        "source": "job",
+        "jobId": "job_cron",
+        "taskKey": "kernel:analyze:cron window",
+        "repo": "dugout",
+        "revision": "aaaa111",
+        "artifactKind": "analyze",
+        "freshness": "stale"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The index freeze is offline.",
+        "source": "job",
+        "jobId": "job_index",
+        "taskKey": "kernel:analyze:index freeze",
+        "repo": "marionette",
+        "revision": "bbbb222",
+        "artifactKind": "analyze",
+        "freshness": "stale"
+      },
+      {
+        "ownerAgentId": "research",
+        "text": "The feed cursor is inclusive.",
+        "source": "job",
+        "jobId": "job_feed",
+        "taskKey": "research:analyze:feed cursor",
+        "repo": "handbook",
+        "revision": "cccc333",
+        "artifactKind": "analyze",
+        "freshness": "stale"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The cache eviction is LRU.",
+        "source": "job",
+        "jobId": "job_cache_lru",
+        "taskKey": "kernel:analyze:cache eviction",
+        "repo": "dugout",
+        "revision": "d0d0d01",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The cache eviction is LFU.",
+        "source": "job",
+        "jobId": "job_cache_lfu",
+        "taskKey": "kernel:analyze:cache eviction",
+        "repo": "dugout",
+        "revision": "d0d0d02",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The mutex order is address based.",
+        "source": "job",
+        "jobId": "job_mutex_a",
+        "taskKey": "kernel:analyze:mutex order",
+        "repo": "marionette",
+        "revision": "e0e0e01",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "kernel",
+        "text": "The mutex order is lock ranked.",
+        "source": "job",
+        "jobId": "job_mutex_b",
+        "taskKey": "kernel:analyze:mutex order",
+        "repo": "marionette",
+        "revision": "e0e0e02",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "research",
+        "text": "The index hint is btree.",
+        "source": "job",
+        "jobId": "job_hint_btree",
+        "taskKey": "research:analyze:index hint",
+        "repo": "handbook",
+        "revision": "f0f0f01",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      },
+      {
+        "ownerAgentId": "research",
+        "text": "The index hint is hash.",
+        "source": "job",
+        "jobId": "job_hint_hash",
+        "taskKey": "research:analyze:index hint",
+        "repo": "handbook",
+        "revision": "f0f0f02",
+        "artifactKind": "analyze",
+        "freshness": "fresh"
+      }
+    ],
+    "gates": [
+      "RECALL_REQUEST",
+      "uniqueSpeakable",
+      "skip stale",
+      "taskKey",
+      "owner"
+    ]
+  },
+  "turns": [
+    {
+      "n": 1,
+      "query": "what did Kernel find about cache eviction.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 2,
+      "query": "What is the weather in Chicago?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 3,
+      "query": "what did you find about feed cursor",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "research",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 4,
+      "query": "what did Kernel find about widget paint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "c0ffee2",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 5,
+      "query": "what did you find about source map backoff",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 6,
+      "query": "remember the you finding for rfc draft",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The rfc draft needs one more example.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "5",
+      "servedRevision": "e55e55e",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "rfc-draft",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "e55e55e",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 7,
+      "query": "what did Kernel find about the queue drain",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The queue drain is single threaded.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "6",
+      "servedRevision": "f66f66f",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "queue-drain",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "f66f66f",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 8,
+      "query": "what did Kernel find about cron window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "cron-window"
+      }
+    },
+    {
+      "n": 9,
+      "query": "what did Kernel find about widget paint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "c0ffee2",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 10,
+      "query": "remember Kernel finding about parser timeout",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The parser timeout is thirty milliseconds.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "2",
+      "servedRevision": "b22b22b",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "parser-timeout",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "b22b22b",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 11,
+      "query": "what did Kernel find about cache eviction",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 12,
+      "query": "what did you find about feed cursor",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "research",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 13,
+      "query": "remember you finding about source map",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The source map omits generated columns.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "10",
+      "servedRevision": "444dddd",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "source-map",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "444dddd",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 14,
+      "query": "what did you find about index hint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 15,
+      "query": "explain ledger replay in more detail",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 16,
+      "query": "what did Kernel find about cron window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "cron-window"
+      }
+    },
+    {
+      "n": 17,
+      "query": "How do I sharpen a pencil?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 18,
+      "query": "what did Kernel find about ledger replay.",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The ledger replay is deterministic.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "1",
+      "servedRevision": "a11a11a",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "ledger-replay",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "a11a11a",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 19,
+      "query": "what happens if lease expiry fails",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 20,
+      "query": "what did Kernel find about mutex order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 21,
+      "query": "what did you find about rank order retries",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 22,
+      "query": "what did Kernel find about cache eviction",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 23,
+      "query": "does style guide still work on main?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 24,
+      "query": "what did Kernel find about bloom filter",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The bloom filter is enabled.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "11",
+      "servedRevision": "555eeee",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "bloom-filter",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "555eeee",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 25,
+      "query": "what did Kernel find about socket backlog",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "deadbe2",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 26,
+      "query": "Kernel last result about lease expiry",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The lease expiry is five minutes.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "9",
+      "servedRevision": "333cccc",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "lease-expiry",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "333cccc",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 27,
+      "query": "What is a good stretching routine?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 28,
+      "query": "what did you find about quota window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "research",
+        "currentRevision": "badc0d2",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 29,
+      "query": "why is The source map omits generated columns?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 30,
+      "query": "How do I tune a guitar?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 31,
+      "query": "What is the smallest prime?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 32,
+      "query": "what did you find about the cite catalog",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The cite catalog is complete.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "3",
+      "servedRevision": "c33c33c",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "cite-catalog",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "c33c33c",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 33,
+      "query": "what did you find about index hint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 34,
+      "query": "what did Kernel find about index freeze",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "index-freeze"
+      }
+    },
+    {
+      "n": 35,
+      "query": "explain ledger replay in more detail.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 36,
+      "query": "what did Kernel find about the blob clock",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The blob clock uses monotonic ticks.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "7",
+      "servedRevision": "111aaaa",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "blob-clock",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "111aaaa",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 37,
+      "query": "what was you last job about style guide",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The style guide bans trailing commas.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "12",
+      "servedRevision": "666ffff",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "style-guide",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "666ffff",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 38,
+      "query": "what did you find for style guide",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The style guide bans trailing commas.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "12",
+      "servedRevision": "666ffff",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "style-guide",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "666ffff",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 39,
+      "query": "what did Kernel find about mutex order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 40,
+      "query": "what did Kernel find about mutex order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 41,
+      "query": "should we publish rank order today",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 42,
+      "query": "how should we change rfc draft?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 43,
+      "query": "what did Kernel find about cache eviction",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 44,
+      "query": "what did Kernel find about auth cookie sharding",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 45,
+      "query": "what did Kernel find about bloom filter checksums",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 46,
+      "query": "remember the you finding for cite catalog",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The cite catalog is complete.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "3",
+      "servedRevision": "c33c33c",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "cite-catalog",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "c33c33c",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 47,
+      "query": "what did you find about index hint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 48,
+      "query": "what did you find about source map backoff",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 49,
+      "query": "what did you find from rank order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "hit",
+        "claimId": "rank-order",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "222bbbb",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 50,
+      "query": "what did Kernel find from parser timeout",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The parser timeout is thirty milliseconds.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "2",
+      "servedRevision": "b22b22b",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "parser-timeout",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "b22b22b",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 51,
+      "query": "what did Kernel find about blob clock hydration",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 52,
+      "query": "what did Kernel find about cache eviction.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 53,
+      "query": "Tell me a joke.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 54,
+      "query": "What movie should I watch?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 55,
+      "query": "what did Kernel find about socket backlog",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "deadbe2",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 56,
+      "query": "what did Kernel find about parser timeout wasm",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 57,
+      "query": "what did you find about index hint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 58,
+      "query": "explain blob clock in more detail",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 59,
+      "query": "remember the Kernel finding about the blob clock",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The blob clock uses monotonic ticks.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "7",
+      "servedRevision": "111aaaa",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "blob-clock",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "111aaaa",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 60,
+      "query": "what did Kernel find for auth cookie",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The auth cookie is httponly.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "4",
+      "servedRevision": "d44d44d",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "auth-cookie",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "d44d44d",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 61,
+      "query": "what did you find for rank order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "hit",
+        "claimId": "rank-order",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "222bbbb",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 62,
+      "query": "what did you find about cite catalog telemetry",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 63,
+      "query": "explain blob clock in more detail",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 64,
+      "query": "what did you find about quota window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "research",
+        "currentRevision": "badc0d2",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 65,
+      "query": "what did Kernel find about lease expiry pagination",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 66,
+      "query": "remember the you finding about the style guide",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The style guide bans trailing commas.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "12",
+      "servedRevision": "666ffff",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "style-guide",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "666ffff",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 67,
+      "query": "what did you find about feed cursor",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "research",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 68,
+      "query": "what did Kernel find from auth cookie",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The auth cookie is httponly.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "4",
+      "servedRevision": "d44d44d",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "auth-cookie",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "d44d44d",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 69,
+      "query": "what did Kernel find for lease expiry.",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The lease expiry is five minutes.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "9",
+      "servedRevision": "333cccc",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "lease-expiry",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "333cccc",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 70,
+      "query": "why is The auth cookie is httponly?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 71,
+      "query": "Thanks for your time.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 72,
+      "query": "why is The source map omits generated columns?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 73,
+      "query": "what happens if cite catalog fails",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 74,
+      "query": "What is the capital of Portugal?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 75,
+      "query": "what did Kernel find about socket backlog at deadbe2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "deadbe2",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 76,
+      "query": "remember the Kernel finding for ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The ledger replay is deterministic.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "1",
+      "servedRevision": "a11a11a",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "ledger-replay",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "a11a11a",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 77,
+      "query": "Good night.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 78,
+      "query": "what happens if lease expiry fails",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 79,
+      "query": "what did you find about index hint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 80,
+      "query": "what did Kernel find about queue drain",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The queue drain is single threaded.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "6",
+      "servedRevision": "f66f66f",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "queue-drain",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "f66f66f",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 81,
+      "query": "why is The auth cookie is httponly?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 82,
+      "query": "Can you recommend a book?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 83,
+      "query": "what did Kernel find about widget paint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "c0ffee2",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 84,
+      "query": "what did Kernel find about index freeze",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "index-freeze"
+      }
+    },
+    {
+      "n": 85,
+      "query": "how should we change bloom filter?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 86,
+      "query": "Where is the nearest library?.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 87,
+      "query": "what did Kernel find about ledger replay protobuf",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 88,
+      "query": "what did you find about quota window at badc0d2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "research",
+        "currentRevision": "badc0d2",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 89,
+      "query": "what did Kernel find for parser timeout",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The parser timeout is thirty milliseconds.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "2",
+      "servedRevision": "b22b22b",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "parser-timeout",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "b22b22b",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 90,
+      "query": "How many days are in June?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 91,
+      "query": "what happens if cite catalog fails",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 92,
+      "query": "What time is it?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 93,
+      "query": "what happens if lease expiry fails",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 94,
+      "query": "what did you find about index hint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 95,
+      "query": "what did you find about feed cursor",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "research",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 96,
+      "query": "How are you today?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 97,
+      "query": "what did you find about feed cursor",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "research",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 98,
+      "query": "Do cats eat grass?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 99,
+      "query": "remember the you finding for source map",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The source map omits generated columns.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "10",
+      "servedRevision": "444dddd",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "source-map",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "444dddd",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 100,
+      "query": "what did you find about quota window at badc0d2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "research",
+        "currentRevision": "badc0d2",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 101,
+      "query": "explain blob clock in more detail",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 102,
+      "query": "how should we change bloom filter?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 103,
+      "query": "what did Kernel find about mutex order.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 104,
+      "query": "should we publish parser timeout today",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 105,
+      "query": "what was Kernel last job about parser timeout",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The parser timeout is thirty milliseconds.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "2",
+      "servedRevision": "b22b22b",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "parser-timeout",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "b22b22b",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 106,
+      "query": "does queue drain still work on main?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 107,
+      "query": "what was you finding about source map",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The source map omits generated columns.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "10",
+      "servedRevision": "444dddd",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "source-map",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "444dddd",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 108,
+      "query": "what did Kernel find about widget paint at c0ffee2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "c0ffee2",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 109,
+      "query": "what did Kernel find from queue drain",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The queue drain is single threaded.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "6",
+      "servedRevision": "f66f66f",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "queue-drain",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "f66f66f",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 110,
+      "query": "what did Kernel find about ledger replay protobuf",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 111,
+      "query": "remember the you finding for rank order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "hit",
+        "claimId": "rank-order",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "222bbbb",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 112,
+      "query": "why is The source map omits generated columns?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 113,
+      "query": "what did you find about feed cursor",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "research",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 114,
+      "query": "what did Kernel find about mutex order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 115,
+      "query": "what did Kernel find about mutex order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 116,
+      "query": "what did Kernel find about cron window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "cron-window"
+      }
+    },
+    {
+      "n": 117,
+      "query": "what did Kernel find about widget paint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "c0ffee2",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 118,
+      "query": "what did you find about style guide timezone",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 119,
+      "query": "what did you find about cite catalog telemetry",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 120,
+      "query": "what did you find about source map backoff.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 121,
+      "query": "what did Kernel find about widget paint at c0ffee2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "c0ffee2",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 122,
+      "query": "what did Kernel find about cache eviction",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 123,
+      "query": "what did Kernel find about index freeze",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "index-freeze"
+      }
+    },
+    {
+      "n": 124,
+      "query": "What is two plus two?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 125,
+      "query": "remember the Kernel finding about the parser timeout",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The parser timeout is thirty milliseconds.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "2",
+      "servedRevision": "b22b22b",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "parser-timeout",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "b22b22b",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 126,
+      "query": "what did Kernel find about mutex order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 127,
+      "query": "remember you finding about rank order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "hit",
+        "claimId": "rank-order",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "222bbbb",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 128,
+      "query": "what did Kernel find about widget paint at c0ffee2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "c0ffee2",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 129,
+      "query": "what did Kernel find about auth cookie sharding",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 130,
+      "query": "what did you find about feed cursor",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "research",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 131,
+      "query": "what did you find about style guide",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The style guide bans trailing commas.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "12",
+      "servedRevision": "666ffff",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "style-guide",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "666ffff",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 132,
+      "query": "remember the Kernel finding about the bloom filter",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The bloom filter is enabled.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "11",
+      "servedRevision": "555eeee",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "bloom-filter",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "555eeee",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 133,
+      "query": "what did you find about quota window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "research",
+        "currentRevision": "badc0d2",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 134,
+      "query": "what did Kernel find about cache eviction",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 135,
+      "query": "Hello, what is your name?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 136,
+      "query": "what did Kernel find about cache eviction",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 137,
+      "query": "what did Kernel find about index freeze.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "index-freeze"
+      }
+    },
+    {
+      "n": 138,
+      "query": "what did you find about rfc draft failover",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 139,
+      "query": "how should we change bloom filter?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 140,
+      "query": "remember the Kernel finding for queue drain",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The queue drain is single threaded.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "6",
+      "servedRevision": "f66f66f",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "queue-drain",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "f66f66f",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 141,
+      "query": "how should we change bloom filter?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 142,
+      "query": "does style guide still work on main?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 143,
+      "query": "remember the Kernel finding for bloom filter",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The bloom filter is enabled.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "11",
+      "servedRevision": "555eeee",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "bloom-filter",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "555eeee",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 144,
+      "query": "what was you last job about rank order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "hit",
+        "claimId": "rank-order",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "222bbbb",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 145,
+      "query": "what did Kernel find about lease expiry",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The lease expiry is five minutes.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "9",
+      "servedRevision": "333cccc",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "lease-expiry",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "333cccc",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 146,
+      "query": "what did Kernel find about ledger replay protobuf",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 147,
+      "query": "why is The auth cookie is httponly?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 148,
+      "query": "what did you find about quota window at badc0d2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "research",
+        "currentRevision": "badc0d2",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 149,
+      "query": "what happens if cite catalog fails",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 150,
+      "query": "what did Kernel find about cron window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "cron-window"
+      }
+    },
+    {
+      "n": 151,
+      "query": "what was Kernel finding about queue drain",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The queue drain is single threaded.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "6",
+      "servedRevision": "f66f66f",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "queue-drain",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "f66f66f",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 152,
+      "query": "what did you find about rank order retries",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 153,
+      "query": "How do I parallel park?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 154,
+      "query": "remember Kernel finding about ledger replay.",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The ledger replay is deterministic.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "1",
+      "servedRevision": "a11a11a",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "ledger-replay",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "a11a11a",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 155,
+      "query": "Good morning.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 156,
+      "query": "what did you find about quota window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "research",
+        "currentRevision": "badc0d2",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 157,
+      "query": "what did Kernel find about socket backlog at deadbe2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "deadbe2",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 158,
+      "query": "what did Kernel find about cron window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "cron-window"
+      }
+    },
+    {
+      "n": 159,
+      "query": "what did you find about index hint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 160,
+      "query": "you last result about source map",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The source map omits generated columns.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "10",
+      "servedRevision": "444dddd",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "source-map",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "444dddd",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 161,
+      "query": "what did Kernel find from bloom filter",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The bloom filter is enabled.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "11",
+      "servedRevision": "555eeee",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "bloom-filter",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "555eeee",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 162,
+      "query": "what did Kernel find about the lease expiry",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The lease expiry is five minutes.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "9",
+      "servedRevision": "333cccc",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "lease-expiry",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "333cccc",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 163,
+      "query": "what did Kernel find about auth cookie sharding",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 164,
+      "query": "what was Kernel last job about queue drain",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The queue drain is single threaded.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "6",
+      "servedRevision": "f66f66f",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "queue-drain",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "f66f66f",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 165,
+      "query": "what did you find about rank order retries",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 166,
+      "query": "what did Kernel find about parser timeout wasm",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 167,
+      "query": "what did Kernel find about blob clock hydration",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 168,
+      "query": "does style guide still work on main?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 169,
+      "query": "what did Kernel find about cron window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "cron-window"
+      }
+    },
+    {
+      "n": 170,
+      "query": "what did Kernel find about socket backlog",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "deadbe2",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 171,
+      "query": "remember you finding about cite catalog.",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The cite catalog is complete.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "3",
+      "servedRevision": "c33c33c",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "cite-catalog",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "c33c33c",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 172,
+      "query": "remember the you finding about the source map",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The source map omits generated columns.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "10",
+      "servedRevision": "444dddd",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "source-map",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "444dddd",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 173,
+      "query": "what did Kernel find from blob clock",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The blob clock uses monotonic ticks.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "7",
+      "servedRevision": "111aaaa",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "blob-clock",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "111aaaa",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 174,
+      "query": "what did you find about style guide timezone",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 175,
+      "query": "what did you find about index hint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 176,
+      "query": "what did Kernel find about mutex order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 177,
+      "query": "Is water wet?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 178,
+      "query": "what did Kernel find about socket backlog",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "deadbe2",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 179,
+      "query": "what did you find from rfc draft",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The rfc draft needs one more example.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "5",
+      "servedRevision": "e55e55e",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "rfc-draft",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "e55e55e",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 180,
+      "query": "what did you find about index hint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 181,
+      "query": "what did Kernel find about queue drain compaction",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 182,
+      "query": "explain blob clock in more detail",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 183,
+      "query": "what did you find about source map backoff",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 184,
+      "query": "What is the opposite of east?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 185,
+      "query": "what happens if lease expiry fails",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 186,
+      "query": "remember the you finding about the rfc draft",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The rfc draft needs one more example.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "5",
+      "servedRevision": "e55e55e",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "rfc-draft",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "e55e55e",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 187,
+      "query": "what did you find about feed cursor",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "research",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 188,
+      "query": "what was Kernel finding about parser timeout.",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The parser timeout is thirty milliseconds.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "2",
+      "servedRevision": "b22b22b",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "parser-timeout",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "b22b22b",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 189,
+      "query": "what did Kernel find about cache eviction",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 190,
+      "query": "what did you find for cite catalog",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The cite catalog is complete.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "3",
+      "servedRevision": "c33c33c",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "cite-catalog",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "c33c33c",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 191,
+      "query": "what did Kernel find about bloom filter checksums",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 192,
+      "query": "Do you like coffee or tea?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 193,
+      "query": "what was you last job about rfc draft",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The rfc draft needs one more example.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "5",
+      "servedRevision": "e55e55e",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "rfc-draft",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "e55e55e",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 194,
+      "query": "explain ledger replay in more detail",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 195,
+      "query": "what was you finding about style guide",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The style guide bans trailing commas.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "12",
+      "servedRevision": "666ffff",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "style-guide",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "666ffff",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 196,
+      "query": "How cold is too cold for lettuce?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 197,
+      "query": "what did Kernel find about mutex order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 198,
+      "query": "what did you find about rank order retries",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 199,
+      "query": "what did you find about quota window at badc0d2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "research",
+        "currentRevision": "badc0d2",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 200,
+      "query": "what did Kernel find about socket backlog",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "deadbe2",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 201,
+      "query": "what did Kernel find about widget paint at c0ffee2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "c0ffee2",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 202,
+      "query": "what was you last job about source map",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The source map omits generated columns.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "10",
+      "servedRevision": "444dddd",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "source-map",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "444dddd",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 203,
+      "query": "How do I cook pasta?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 204,
+      "query": "what did Kernel find about bloom filter checksums",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 205,
+      "query": "how should we change rfc draft?.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 206,
+      "query": "what did you find for rfc draft",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The rfc draft needs one more example.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "5",
+      "servedRevision": "e55e55e",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "rfc-draft",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "e55e55e",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 207,
+      "query": "what did Kernel find about index freeze",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "index-freeze"
+      }
+    },
+    {
+      "n": 208,
+      "query": "remember you finding about rfc draft",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The rfc draft needs one more example.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "5",
+      "servedRevision": "e55e55e",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "rfc-draft",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "e55e55e",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 209,
+      "query": "Can you set a timer for pizza?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 210,
+      "query": "Who won the World Series in 2016?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 211,
+      "query": "what did Kernel find about socket backlog at deadbe2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "deadbe2",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 212,
+      "query": "what did Kernel find about index freeze",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "index-freeze"
+      }
+    },
+    {
+      "n": 213,
+      "query": "what was you finding about cite catalog",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The cite catalog is complete.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "3",
+      "servedRevision": "c33c33c",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "cite-catalog",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "c33c33c",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 214,
+      "query": "what did Kernel find about cron window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "cron-window"
+      }
+    },
+    {
+      "n": 215,
+      "query": "Kernel last result about auth cookie",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The auth cookie is httponly.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "4",
+      "servedRevision": "d44d44d",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "auth-cookie",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "d44d44d",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 216,
+      "query": "Kernel last result about parser timeout",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The parser timeout is thirty milliseconds.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "2",
+      "servedRevision": "b22b22b",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "parser-timeout",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "b22b22b",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 217,
+      "query": "What is a haiku?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 218,
+      "query": "how should we change rfc draft?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 219,
+      "query": "what did you find about rfc draft failover",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 220,
+      "query": "what did Kernel find about parser timeout wasm",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 221,
+      "query": "what was Kernel finding about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The ledger replay is deterministic.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "1",
+      "servedRevision": "a11a11a",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "ledger-replay",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "a11a11a",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 222,
+      "query": "what was Kernel last job about lease expiry.",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The lease expiry is five minutes.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "9",
+      "servedRevision": "333cccc",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "lease-expiry",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "333cccc",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 223,
+      "query": "what did Kernel find about auth cookie sharding",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 224,
+      "query": "what did you find about feed cursor",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "research",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 225,
+      "query": "what did Kernel find for ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The ledger replay is deterministic.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "1",
+      "servedRevision": "a11a11a",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "ledger-replay",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "a11a11a",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 226,
+      "query": "Can you name a river in Egypt?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 227,
+      "query": "what did Kernel find for bloom filter",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The bloom filter is enabled.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "11",
+      "servedRevision": "555eeee",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "bloom-filter",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "555eeee",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 228,
+      "query": "what did Kernel find about ledger replay protobuf",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 229,
+      "query": "what did Kernel find about cron window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "cron-window"
+      }
+    },
+    {
+      "n": 230,
+      "query": "what did Kernel find about cron window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "cron-window"
+      }
+    },
+    {
+      "n": 231,
+      "query": "remember Kernel finding about bloom filter",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The bloom filter is enabled.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "11",
+      "servedRevision": "555eeee",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "bloom-filter",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "555eeee",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 232,
+      "query": "what did Kernel find about socket backlog at deadbe2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "deadbe2",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 233,
+      "query": "what did Kernel find for queue drain",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The queue drain is single threaded.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "6",
+      "servedRevision": "f66f66f",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "queue-drain",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "f66f66f",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 234,
+      "query": "What should I pack for camping?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 235,
+      "query": "what did Kernel find about index freeze",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "index-freeze"
+      }
+    },
+    {
+      "n": 236,
+      "query": "what was you last job about cite catalog",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The cite catalog is complete.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "3",
+      "servedRevision": "c33c33c",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "cite-catalog",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "c33c33c",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 237,
+      "query": "what did you find about index hint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 238,
+      "query": "what did you find about feed cursor",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "research",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 239,
+      "query": "remember the Kernel finding for blob clock.",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The blob clock uses monotonic ticks.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "7",
+      "servedRevision": "111aaaa",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "blob-clock",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "111aaaa",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 240,
+      "query": "what did Kernel find about lease expiry pagination",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 241,
+      "query": "should we publish rank order today",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 242,
+      "query": "Where should we eat lunch?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 243,
+      "query": "Can you count to twenty?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 244,
+      "query": "what did you find about feed cursor",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "research",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 245,
+      "query": "what did Kernel find about the ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The ledger replay is deterministic.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "1",
+      "servedRevision": "a11a11a",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "ledger-replay",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "a11a11a",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 246,
+      "query": "remember the Kernel finding for auth cookie",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The auth cookie is httponly.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "4",
+      "servedRevision": "d44d44d",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "auth-cookie",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "d44d44d",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 247,
+      "query": "what did Kernel find about queue drain compaction",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 248,
+      "query": "what did you find about style guide timezone",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 249,
+      "query": "Is it going to rain tomorrow?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 250,
+      "query": "what did Kernel find about widget paint at c0ffee2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "c0ffee2",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 251,
+      "query": "what did you find about cite catalog telemetry",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 252,
+      "query": "does style guide still work on main?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 253,
+      "query": "what did Kernel find about index freeze",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "index-freeze"
+      }
+    },
+    {
+      "n": 254,
+      "query": "what did Kernel find about index freeze",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "index-freeze"
+      }
+    },
+    {
+      "n": 255,
+      "query": "what did you find about rfc draft failover",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 256,
+      "query": "what did Kernel find about cache eviction.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 257,
+      "query": "what did you find about the source map",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The source map omits generated columns.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "10",
+      "servedRevision": "444dddd",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "source-map",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "444dddd",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 258,
+      "query": "what did Kernel find about widget paint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "c0ffee2",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 259,
+      "query": "How do I fold a fitted sheet?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 260,
+      "query": "what did Kernel find about cron window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "cron-window"
+      }
+    },
+    {
+      "n": 261,
+      "query": "Can you help me pack a suitcase?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 262,
+      "query": "what did Kernel find about the bloom filter",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The bloom filter is enabled.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "11",
+      "servedRevision": "555eeee",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "bloom-filter",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "555eeee",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 263,
+      "query": "why is The source map omits generated columns?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 264,
+      "query": "should we publish rank order today",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 265,
+      "query": "you last result about style guide",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The style guide bans trailing commas.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "12",
+      "servedRevision": "666ffff",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "style-guide",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "666ffff",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 266,
+      "query": "does queue drain still work on main?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 267,
+      "query": "what did you find about rfc draft",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The rfc draft needs one more example.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "5",
+      "servedRevision": "e55e55e",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "rfc-draft",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "e55e55e",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 268,
+      "query": "what did Kernel find about socket backlog at deadbe2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "deadbe2",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 269,
+      "query": "remember Kernel finding about auth cookie",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The auth cookie is httponly.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "4",
+      "servedRevision": "d44d44d",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "auth-cookie",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "d44d44d",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 270,
+      "query": "what did Kernel find about mutex order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 271,
+      "query": "what did Kernel find about cron window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "cron-window"
+      }
+    },
+    {
+      "n": 272,
+      "query": "what did you find about style guide timezone",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 273,
+      "query": "Do you have a favorite number?.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 274,
+      "query": "Is the office open on Sunday?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 275,
+      "query": "what did Kernel find about index freeze",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "index-freeze"
+      }
+    },
+    {
+      "n": 276,
+      "query": "should we publish parser timeout today",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 277,
+      "query": "what was Kernel finding about blob clock",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The blob clock uses monotonic ticks.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "7",
+      "servedRevision": "111aaaa",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "blob-clock",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "111aaaa",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 278,
+      "query": "what did you find about index hint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 279,
+      "query": "does queue drain still work on main?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 280,
+      "query": "What color is the sky at noon?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 281,
+      "query": "how should we change rfc draft?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 282,
+      "query": "what did you find from style guide",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The style guide bans trailing commas.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "12",
+      "servedRevision": "666ffff",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "style-guide",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "666ffff",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 283,
+      "query": "what was Kernel finding about lease expiry",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The lease expiry is five minutes.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "9",
+      "servedRevision": "333cccc",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "lease-expiry",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "333cccc",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 284,
+      "query": "what did Kernel find about index freeze",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "index-freeze"
+      }
+    },
+    {
+      "n": 285,
+      "query": "what did you find about quota window at badc0d2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "research",
+        "currentRevision": "badc0d2",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 286,
+      "query": "what did Kernel find about index freeze",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "index-freeze"
+      }
+    },
+    {
+      "n": 287,
+      "query": "what did Kernel find about socket backlog",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "deadbe2",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 288,
+      "query": "you last result about cite catalog",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The cite catalog is complete.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "3",
+      "servedRevision": "c33c33c",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "cite-catalog",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "c33c33c",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 289,
+      "query": "what did Kernel find about widget paint at c0ffee2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "c0ffee2",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 290,
+      "query": "what did Kernel find about parser timeout.",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The parser timeout is thirty milliseconds.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "2",
+      "servedRevision": "b22b22b",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "parser-timeout",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "b22b22b",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 291,
+      "query": "remember the you finding about the rank order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "hit",
+        "claimId": "rank-order",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "222bbbb",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 292,
+      "query": "Kernel last result about queue drain",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The queue drain is single threaded.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "6",
+      "servedRevision": "f66f66f",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "queue-drain",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "f66f66f",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 293,
+      "query": "Please summarize the news.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 294,
+      "query": "what did you find about cite catalog telemetry",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 295,
+      "query": "what did Kernel find about cache eviction",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 296,
+      "query": "what did you find about index hint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 297,
+      "query": "remember the Kernel finding about the auth cookie",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The auth cookie is httponly.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "4",
+      "servedRevision": "d44d44d",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "auth-cookie",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "d44d44d",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 298,
+      "query": "what did Kernel find about bloom filter checksums",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 299,
+      "query": "what did Kernel find about mutex order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 300,
+      "query": "How do I get to the airport?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 301,
+      "query": "should we publish rank order today",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "research"
+      }
+    },
+    {
+      "n": 302,
+      "query": "you last result about rfc draft",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The rfc draft needs one more example.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "5",
+      "servedRevision": "e55e55e",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "rfc-draft",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "e55e55e",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 303,
+      "query": "what did Kernel find about blob clock hydration",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 304,
+      "query": "what did you find about feed cursor",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "research",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 305,
+      "query": "what did Kernel find about socket backlog at deadbe2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "deadbe2",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 306,
+      "query": "why is The auth cookie is httponly?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 307,
+      "query": "what did Kernel find about cron window.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "stale",
+        "owner": "kernel",
+        "claimId": "cron-window"
+      }
+    },
+    {
+      "n": 308,
+      "query": "what did you find about cite catalog",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The cite catalog is complete.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "3",
+      "servedRevision": "c33c33c",
+      "servedRepo": "handbook",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "cite-catalog",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "c33c33c",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 309,
+      "query": "Kernel last result about blob clock",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The blob clock uses monotonic ticks.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "7",
+      "servedRevision": "111aaaa",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "blob-clock",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "111aaaa",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 310,
+      "query": "what did Kernel find from ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The ledger replay is deterministic.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "1",
+      "servedRevision": "a11a11a",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "ledger-replay",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "a11a11a",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 311,
+      "query": "does queue drain still work on main?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 312,
+      "query": "what did you find about rank order",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "hit",
+        "claimId": "rank-order",
+        "reason": "paraphrase",
+        "owner": "research",
+        "currentRevision": "222bbbb",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 313,
+      "query": "what did Kernel find about widget paint",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "kernel",
+        "currentRevision": "c0ffee2",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 314,
+      "query": "what did Kernel find about lease expiry pagination",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 315,
+      "query": "what did Kernel find about lease expiry pagination",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 316,
+      "query": "what was Kernel finding about auth cookie",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The auth cookie is httponly.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "4",
+      "servedRevision": "d44d44d",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "auth-cookie",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "d44d44d",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 317,
+      "query": "what did you find about quota window at badc0d2",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "research",
+        "currentRevision": "badc0d2",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 318,
+      "query": "what did Kernel find about parser timeout wasm",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 319,
+      "query": "what did Kernel find about cache eviction",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 320,
+      "query": "what did you find about quota window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "research",
+        "currentRevision": "badc0d2",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 321,
+      "query": "remember Kernel finding about blob clock",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The blob clock uses monotonic ticks.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "7",
+      "servedRevision": "111aaaa",
+      "servedRepo": "marionette",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "blob-clock",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "111aaaa",
+        "currentRepo": "marionette"
+      }
+    },
+    {
+      "n": 322,
+      "query": "What is the airspeed of a swallow?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 323,
+      "query": "what did Kernel find about queue drain compaction",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "changed-req",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 324,
+      "query": "what did Kernel find about mutex order.",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "conflict",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 325,
+      "query": "what did Kernel find from lease expiry",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The lease expiry is five minutes.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "9",
+      "servedRevision": "333cccc",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "lease-expiry",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "333cccc",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 326,
+      "query": "should we publish parser timeout today",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "owner": "kernel"
+      }
+    },
+    {
+      "n": 327,
+      "query": "what did you find about quota window",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "evolved-repo",
+        "owner": "research",
+        "currentRevision": "badc0d2",
+        "currentRepo": "handbook"
+      }
+    },
+    {
+      "n": 328,
+      "query": "remember the Kernel finding about the ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The ledger replay is deterministic.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "1",
+      "servedRevision": "a11a11a",
+      "servedRepo": "dugout",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "ledger-replay",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "a11a11a",
+        "currentRepo": "dugout"
+      }
+    },
+    {
+      "n": 329,
+      "query": "what did Kernel find about the auth cookie",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0,
+      "costUsd": 0,
+      "spoken": "The auth cookie is httponly.",
+      "falseHit": false,
+      "staleHit": false,
+      "servedClaimId": "4",
+      "servedRevision": "d44d44d",
+      "servedRepo": "puppetmaster",
+      "servedFreshness": "fresh",
+      "gold": {
+        "expect": "hit",
+        "claimId": "auth-cookie",
+        "reason": "paraphrase",
+        "owner": "kernel",
+        "currentRevision": "d44d44d",
+        "currentRepo": "puppetmaster"
+      }
+    },
+    {
+      "n": 330,
+      "query": "How long does sourdough take?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1,
+      "costUsd": 0.001,
+      "spoken": "Staff. Paid miss.",
+      "falseHit": false,
+      "staleHit": false,
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    }
+  ],
+  "summary": {
+    "turns": 330,
+    "avoidance": 0.2515151515151515,
+    "falseHitRate": 0,
+    "staleHitRate": 0,
+    "inferenceCalls": 247,
+    "inferenceAvoided": 83,
+    "costUsd": 0.2470000000000002,
+    "hits": 83,
+    "misses": 247,
+    "falseHits": 0,
+    "staleHits": 0,
+    "notes": "This mix will NOT be 95%. 95% was the easy repeated-domain recall; this scores safety of reuse. False hits are more important than avoidance. 40% avoidance with ~0 false hits is better than 90% that sometimes serves the wrong commit. A conservative miss is not a false hit. queryFirst was not retuned to inflate avoidance."
+  },
+  "store": {
+    "path": "/var/folders/wb/l_d00bm97410byywwl5th49r0000gn/T/automaton-tough-eval-1787843098052.sqlite",
+    "liveHomeStore": false
+  },
+  "gitSha": "3cb1e8d5e9b8bd732647a5f9bbeb2d7c05fd960c",
+  "capturedAt": "2026-08-27T15:04:58.257Z",
+  "ledger": {
+    "turns": 330,
+    "hits": 83,
+    "misses": 247,
+    "inferenceAvoided": 83,
+    "inferenceCalls": 247,
+    "promptTokens": 2717,
+    "completionTokens": 988,
+    "costUsd": 0.2470000000000002,
+    "promptTokensKnown": 247,
+    "promptTokensUnknown": 0,
+    "completionTokensKnown": 247,
+    "completionTokensUnknown": 0,
+    "costKnown": 247,
+    "costUnknown": 0
+  }
+}
