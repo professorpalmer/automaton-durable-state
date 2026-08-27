@@ -216,6 +216,55 @@ bun scripts/replay-repeated-work.ts
 
 That script uses a temp sqlite path. It does not read `~/.automaton/staff.sqlite`.
 
+A harder mixed workload is in [Tough eval](#tough-eval). Do not read that mix as a 95% result.
+
+## Tough eval
+
+This mix will NOT be 95%. 95% was the easy repeated-domain recall; this
+scores safety of reuse. False hits are more important than avoidance.
+
+330 seeded turns against Automaton's real `ensureMouth` + `StaffStore` +
+`queryFirst` (mocked ChatFn, temp sqlite, never `~/.automaton/staff.sqlite`).
+The generator is not twenty identical recalls. It covers paraphrases of a
+stored finding, follow-up questions, slightly changed requirements, evolving
+repositories, deliberately stale findings, conflicting agent findings, and
+unrelated questions.
+
+It measures the current gates (`RECALL_REQUEST`, `uniqueSpeakable`, skip
+stale, `taskKey`, owner). `queryFirst` was not retuned to inflate avoidance.
+No false-hit bug showed up in this mix; the matcher was left alone. A
+conservative miss is not a false hit.
+
+| metric | value |
+| --- | --- |
+| turns | 330 |
+| avoidance (`inferenceAvoided / turns`) | 83/330 = 25.15% |
+| false-hit rate | 0 |
+| stale-hit rate | 0 |
+| `inferenceCalls` | 247 |
+| `costUsd` (mocked $0.001 on a miss, $0 on a hit) | 0.247 |
+
+83 of 90 gold paraphrases hit. The other 7 were conservative misses. Every
+follow-up, changed-requirement, evolved-revision, stale, conflict, and
+unrelated turn missed. UniqueSpeakable did not pick a side on two speakable
+claims. An old revision did not serve when a newer revision of the same task
+was also stored.
+
+40% avoidance with ~0 false hits is better than 90% that sometimes serves the
+wrong commit.
+
+Files in this repo:
+
+- [`tough-eval-ledger.json`](./tough-eval-ledger.json) — per-turn rows and summary
+- [`tough-eval-spec.json`](./tough-eval-spec.json) — seed, claims, and gold labels
+- [`replay-tough-eval.ts`](./replay-tough-eval.ts) — generator (run from Automaton)
+
+```sh
+bun scripts/replay-tough-eval.ts
+```
+
+That is a separate experiment from the 19/20 replay. It does not validate 95%.
+
 ## Prescription
 
 > Treat context as a cache, not as the database. Make agent roles ephemeral.
