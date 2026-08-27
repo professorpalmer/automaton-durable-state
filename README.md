@@ -2,7 +2,6 @@
 
 On this repeated-work replay, 19/20 turns avoided inference (95%). That number
 comes from changing the architecture, not from discounting a single new task.
-@cursor_ai
 
 > GrokBot should treat context as a cache, not as its database.
 
