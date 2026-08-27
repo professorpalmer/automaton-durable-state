@@ -1,0 +1,216 @@
+{
+  "workload": {
+    "description": "20 user turns against Automaton ensureMouth + StaffStore + queryFirst. Turn 1 is a novel question that is not a recall, so queryFirst misses and one mocked ChatFn call is the paid inference. Chat misses do not auto-remember(); after that miss the replay seeds one job-sourced Kernel claim as if a worker had finished. Turns 2-20 send the recall query from tests/mouth.test.ts and must hit with inferenceAvoided=true and no further ChatFn calls. Uses a temp sqlite path, never ~/.automaton/staff.sqlite. This is not Cary Palmer live mixed ledger (1 hit / 51 turns).",
+    "turns": 20,
+    "missQuery": "Hello, what is your name?",
+    "recallQuery": "what did Kernel find about ledger replay",
+    "seededClaim": {
+      "ownerAgentId": "kernel",
+      "text": "The ledger replay is deterministic.",
+      "source": "job",
+      "jobId": "job_1",
+      "taskKey": "kernel:analyze:ledger replay",
+      "artifactKind": "analyze",
+      "freshness": "fresh"
+    },
+    "liveMixedLedger": {
+      "hits": 1,
+      "turns": 51,
+      "note": "Cary Palmer live ~/.automaton/staff.sqlite mix is 1 hit / 51 turns. That mix is not this workload."
+    },
+    "sessionRateNote": "This 95% is a session-level hit rate across a day of work, not a discount on a single new task. The first look at a repo, paper, or bug still pays a full mouth call. Later turns that come back to that same finding query the store and skip the model. A typical day is mostly those later turns; that mix is why 19 of 20 turns avoided inference. One novel task is still one paid call (100% of that turn)."
+  },
+  "turns": [
+    {
+      "n": 1,
+      "query": "Hello, what is your name?",
+      "outcome": "miss",
+      "inferenceAvoided": false,
+      "inferenceAttempted": true,
+      "chatCalls": 1
+    },
+    {
+      "n": 2,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 3,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 4,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 5,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 6,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 7,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 8,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 9,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 10,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 11,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 12,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 13,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 14,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 15,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 16,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 17,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 18,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 19,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    },
+    {
+      "n": 20,
+      "query": "what did Kernel find about ledger replay",
+      "outcome": "hit",
+      "inferenceAvoided": true,
+      "inferenceAttempted": false,
+      "chatCalls": 0
+    }
+  ],
+  "summary": {
+    "turns": 20,
+    "misses": 1,
+    "hits": 19,
+    "inferenceAvoided": 19,
+    "inferenceCalls": 1,
+    "chatCalls": 1,
+    "avoidedOverTotal": 0.95
+  },
+  "store": {
+    "path": "/var/folders/wb/l_d00bm97410byywwl5th49r0000gn/T/automaton-repeated-work-1787839108121.sqlite",
+    "liveHomeStore": false
+  },
+  "gitSha": "ef4b4330183de04aaef6cb786a99c1a2fd8d6a48",
+  "capturedAt": "2026-08-27T13:58:28.143Z",
+  "ledger": {
+    "turns": 20,
+    "hits": 19,
+    "misses": 1,
+    "inferenceAvoided": 19,
+    "inferenceCalls": 1,
+    "promptTokens": 11,
+    "completionTokens": 4,
+    "costUsd": 0.0002,
+    "promptTokensKnown": 1,
+    "promptTokensUnknown": 0,
+    "completionTokensKnown": 1,
+    "completionTokensUnknown": 0,
+    "costKnown": 1,
+    "costUnknown": 0
+  }
+}

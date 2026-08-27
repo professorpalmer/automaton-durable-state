@@ -1,7 +1,8 @@
 # How to reduce GrokBot usage by changing the architecture
 
-I reduced GrokBot's usage by about 95% on repeated-work workloads by changing
-the architecture. @cursor_ai
+On this repeated-work replay, 19/20 turns avoided inference (95%). That number
+comes from changing the architecture, not from discounting a single new task.
+@cursor_ai
 
 > GrokBot should treat context as a cache, not as its database.
 
@@ -169,9 +170,41 @@ After one worker has completed a reusable result, the next matching request
 is a query. It does not need another head-agent debate, another permanent role
 runtime, or another full transcript.
 
-The roughly 95% figure is therefore an architectural workload result, not a
-claim that every possible workload has a 95% hit rate. The receipt ledger and
-a production-like replay set are how to verify the number.
+The 95% figure is a measured session-level result on one repeated-work
+replay, not a claim that every workload or every Grok Bot user sees 95%. The
+receipt ledger is how to verify the number. See [Measured repeated-work replay](#measured-repeated-work-replay).
+
+## Measured repeated-work replay
+
+On this repeated-work replay, 19/20 turns avoided inference (95%).
+
+This is one paid miss plus 19 zero-call recalls of a stored job finding. Turn 1
+asks a novel question that is not a recall; `queryFirst` misses and one mocked
+mouth call is the paid inference. Chat misses do not `remember()` themselves.
+After that miss the replay seeds one job-sourced Kernel claim (`The ledger
+replay is deterministic.`) as if a worker had finished. Turns 2–20 ask `what
+did Kernel find about ledger replay` and hit with `inferenceAvoided=true` and
+no further ChatFn calls.
+
+This is not Cary Palmer's live mixed ledger. That mix was 1 hit / 51 turns, and
+it is not this workload.
+
+This 95% is a session-level hit rate across a day of work, not a discount on a
+single new task. The first look at a repo, paper, or bug still pays a full
+mouth call. Later turns that come back to that same finding query the store
+and skip the model. A typical day is mostly those later turns; that mix is why
+19 of 20 turns avoided inference. One novel task is still one paid call (100%
+of that turn). Do not read this as "per task 95% off" or as "Grok Bot users
+always save 95%."
+
+The captured ledger is [`repeated-work-ledger.json`](./repeated-work-ledger.json).
+Re-run from the Automaton checkout:
+
+```sh
+bun scripts/replay-repeated-work.ts
+```
+
+That script uses a temp sqlite path. It does not read `~/.automaton/staff.sqlite`.
 
 ## The short prescription for Cursor
 
