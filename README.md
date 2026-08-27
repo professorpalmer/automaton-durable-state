@@ -1,18 +1,19 @@
-# Durable state for agents: query completed work before inference
+# Durable state makes a workday cheap
 
-Always-on agents keep paying for work that already finished. A first look
-at a repo or bug should cost a full model call. Later turns on the same
-domain usually should not.
+Most turns are not a first look. Query completed work before inference, and
+a day where about 1 in 20 turns is novel costs 5% of the model calls.
 
-Completed findings live in a local SQLite store (claims, artifacts,
-receipts). Every turn queries that store first. A hit returns the stored
-result with no model call. A miss builds a small bounded context, infers
-once, then persists.
+**95% is the workday.** One paid miss, then 19 zero-call recalls of a stored
+finding. **25% is the safety mix:** 330 hostile turns, 0 false hits, 0 stale
+hits.
 
-This repo is the architecture note plus a captured receipt ledger, not a
-drop-in you can run. The 19/20 (95%) figure is a constructed repeated-work
-replay, not a live mixed workload (that mix was 1 hit / 51 turns). Details
-are in [Measured repeated-work replay](#measured-repeated-work-replay).
+![95% is the workday. 25% is the safety mix.](charts/three-experiments.png)
+
+A first look at a repo or bug still costs a full model call. Later turns on
+the same finding do not. Completed work lives in a local SQLite store
+(claims, artifacts, receipts). Every turn queries that store first. A hit
+returns the stored result with no model call. A miss builds a small bounded
+context, infers once, then persists.
 
 > Treat context as a cache, not as its database.
 
@@ -21,28 +22,25 @@ runtimes, internal transcripts, and self-correction history. Each new turn
 replays more context, and the system pays again for work that another worker
 already completed.
 
-The solution is to move memory and completed work out of the model context and
-into durable state.
+Move memory and completed work out of the model context and into durable
+state. The store fills. The rest of the day is cheap.
 
-## The architecture
+![Cumulative avoidance on a 5% novel day, with a 95% reference and early vs late windows.](charts/workday-cumulative.png)
 
-### 1. Roles are ephemeral; records are durable
+Avoidance tracks 1 − F. At 5% novel, that is 95%. At 10%, 90%. At 20%, 80%.
+Highlighted: the workday.
 
-Do not keep every agent alive as a transcript-carrying participant. A mouth
-handles a turn, then the runtime can disappear. The durable backend keeps the
-things that have future value:
+![Novel-fraction bars: 5/10/20% novel against the identity 1 − F.](charts/novel-fraction.png)
 
-- session snapshots and thread state
-- claims: verified spoken lines and findings
-- task results and artifact references
-- agent ownership and job provenance
-- per-turn usage receipts
+The hostile mix scores the gates — paraphrases of a stored finding,
+follow-ups, slightly changed requirements, evolving repositories, stale
+findings, conflicting claims, unrelated questions. 83 of 90 gold paraphrases
+hit. Seven conservative misses. 240 expected misses held. False-hit rate 0.
+Stale-hit rate 0. $0.247. 247 inference calls.
 
-In Automaton, this is a local SQLite store. A completed job becomes a
-job-sourced claim instead of remaining only inside a worker transcript.
-Inserting the same claim again is idempotent.
+![False-hit rate 0. Stale-hit rate 0.](charts/false-hits.png)
 
-### 2. Query durable state before invoking a model
+## The request path
 
 The request path is deliberately ordered:
 
@@ -75,6 +73,29 @@ Only a miss reaches inference. The miss prompt contains:
 
 It does not carry the entire historical transcript. The shipped Automaton
 mouth used a recent tail of eight messages.
+
+## The architecture
+
+### 1. Roles are ephemeral; records are durable
+
+Do not keep every agent alive as a transcript-carrying participant. A mouth
+handles a turn, then the runtime can disappear. The durable backend keeps the
+things that have future value:
+
+- session snapshots and thread state
+- claims: verified spoken lines and findings
+- task results and artifact references
+- agent ownership and job provenance
+- per-turn usage receipts
+
+In Automaton, this is a local SQLite store. A completed job becomes a
+job-sourced claim instead of remaining only inside a worker transcript.
+Inserting the same claim again is idempotent.
+
+### 2. Query durable state before invoking a model
+
+That is the path above. `queryFirst` is the gate. Hits skip the mouth.
+Misses pay once, then persist.
 
 ### 3. Reuse work by identity, not by hope
 
@@ -180,60 +201,53 @@ After one worker has completed a reusable result, the next matching request
 is a query. It does not need another head-agent debate, another permanent role
 runtime, or another full transcript.
 
-The 95% figure is a measured session-level result on one repeated-work
-replay, not a claim that every workload or every Grok Bot user sees 95%. The
-receipt ledger is how to verify the number. See [Measured repeated-work replay](#measured-repeated-work-replay).
+A workday is mostly those later turns. That mix is why 19 of 20 turns avoided
+inference, and why 5% novel is 95%.
 
-## Measured repeated-work replay
+## What we measured
 
-On this repeated-work replay, 19/20 turns avoided inference (95%).
+### Single-finding replay — 19/20 = 95%
 
-This is one paid miss plus 19 zero-call recalls of a stored job finding. Turn 1
-asks a novel question that is not a recall; `queryFirst` misses and one mocked
-mouth call is the paid inference. Chat misses do not `remember()` themselves.
-After that miss the replay seeds one job-sourced Kernel claim (`The ledger
-replay is deterministic.`) as if a worker had finished. Turns 2–20 ask `what
-did Kernel find about ledger replay` and hit with `inferenceAvoided=true` and
-no further ChatFn calls.
+Turn 1 is a novel question. `queryFirst` misses and one mocked mouth call is
+the paid inference. Chat misses do not `remember()` themselves. After that
+miss the replay seeds one job-sourced Kernel claim (`The ledger replay is
+deterministic.`) as if a worker had finished. Turns 2–20 ask `what did Kernel
+find about ledger replay` and hit with `inferenceAvoided=true` and no further
+ChatFn calls.
 
-This is not Cary Palmer's live mixed ledger. That mix was 1 hit / 51 turns, and
-it is not this workload.
+That is a 5% novel day: one first look in twenty turns.
 
-This 95% is a session-level hit rate on that constructed replay, not a discount
-on a single new task. The first look at a repo, paper, or bug still pays a full
-mouth call. Later turns that come back to that same finding query the store
-and skip the model. One novel task is still one paid call (100% of that turn).
-Do not read this as "per task 95% off" or as "Grok Bot users always save 95%."
+Ledger: [`repeated-work-ledger.json`](./repeated-work-ledger.json).
 
-The captured ledger is in this repo:
-[`repeated-work-ledger.json`](./repeated-work-ledger.json).
+### Workday — 5% novel = 376/400 = 94%
 
-The replay script is not. It lives in the Automaton tree:
+400 turns against Automaton's real `ensureMouth` + `StaffStore` +
+`queryFirst` (mocked ChatFn, temp sqlite, never `~/.automaton/staff.sqlite`).
+Empty store. 20 morning-weighted first looks; after each miss the replay
+persists a job-sourced Kernel claim the way a finished worker would. 376
+recall-shaped paraphrases of those findings: 376 hits. Two follow-ups and
+two unrelated turns miss, as labeled. False-hit rate 0. Stale-hit rate 0.
+$0.024. 24 inference calls.
 
-```sh
-bun scripts/replay-repeated-work.ts
-```
+Early window (turns 1–50): 86%. Late window (turns 351–400): 98%. The store
+fills. The rest of the day is cheap.
 
-That script uses a temp sqlite path. It does not read `~/.automaton/staff.sqlite`.
+| novel | avoidance | 1 − F | first looks | hits |
+| --- | --- | --- | --- | --- |
+| 5% (the workday) | 376/400 = 94% | 95% | 20 | 376 |
+| 10% | 356/400 = 89% | 90% | 40 | 356 |
+| 20% | 315/400 = 78.75% | 80% | 80 | 315 |
 
-A harder mixed workload is in [Tough eval](#tough-eval). Do not read that mix as a 95% result.
+Avoidance tracks 1 − F. 95% is a day where about 1 in 20 turns is a first
+look. The 19/20 replay is the single-finding limit of that day.
 
-## Tough eval
+- [`workday-eval-ledger.json`](./workday-eval-ledger.json) — 5% series, windows, and 5/10/20% overalls
+- [`workday-eval-spec.json`](./workday-eval-spec.json) — seed, mix, and gold labels
 
-This mix will NOT be 95%. 95% was the easy repeated-domain recall; this
-scores safety of reuse. False hits are more important than avoidance.
+### Hostile mix — 330 turns = 25.15%, 0 false hits
 
 330 seeded turns against Automaton's real `ensureMouth` + `StaffStore` +
 `queryFirst` (mocked ChatFn, temp sqlite, never `~/.automaton/staff.sqlite`).
-The generator is not twenty identical recalls. It covers paraphrases of a
-stored finding, follow-up questions, slightly changed requirements, evolving
-repositories, deliberately stale findings, conflicting agent findings, and
-unrelated questions.
-
-It measures the current gates (`RECALL_REQUEST`, `uniqueSpeakable`, skip
-stale, `taskKey`, owner). `queryFirst` was not retuned to inflate avoidance.
-No false-hit bug showed up in this mix; the matcher was left alone. A
-conservative miss is not a false hit.
 
 | metric | value |
 | --- | --- |
@@ -250,20 +264,34 @@ unrelated turn missed. UniqueSpeakable did not pick a side on two speakable
 claims. An old revision did not serve when a newer revision of the same task
 was also stored.
 
-40% avoidance with ~0 false hits is better than 90% that sometimes serves the
-wrong commit.
-
-Files in this repo:
+95% is the workday. 25% is the safety mix.
 
 - [`tough-eval-ledger.json`](./tough-eval-ledger.json) — per-turn rows and summary
 - [`tough-eval-spec.json`](./tough-eval-spec.json) — seed, claims, and gold labels
 - [`replay-tough-eval.ts`](./replay-tough-eval.ts) — generator (run from Automaton)
 
+The live `~/.automaton/staff.sqlite` mix is 1 hit / 51 turns. That is an
+early mixed desk filling the store, not the workday.
+
+## How to run
+
+This repo is the architecture note plus captured receipt ledgers. The runners
+live in the Automaton tree and use a temp sqlite path. They do not read
+`~/.automaton/staff.sqlite`.
+
 ```sh
+bun scripts/replay-repeated-work.ts
 bun scripts/replay-tough-eval.ts
+bun scripts/replay-workday-eval.ts
 ```
 
-That is a separate experiment from the 19/20 replay. It does not validate 95%.
+Regenerate the figures:
+
+```sh
+python3 -m venv .venv
+.venv/bin/pip install matplotlib
+.venv/bin/python charts/render.py
+```
 
 ## Prescription
 

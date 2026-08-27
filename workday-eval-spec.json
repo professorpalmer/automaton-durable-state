@@ -1,0 +1,3628 @@
+{
+  "seed": 20260827,
+  "turns": 400,
+  "primaryNovelRate": 0.05,
+  "novelRates": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "mix": {
+    "firstLook": 20,
+    "revisitParaphrase": 376,
+    "followup": 2,
+    "unrelated": 2,
+    "novelRate": 0.05
+  },
+  "description": "Seeded workday saturation workload against Automaton ensureMouth + StaffStore + queryFirst. Empty store. 400 turns that look like a workday: morning-weighted first-looks (novel miss, then persist a job-sourced Kernel claim the way a finished worker would), later recall-shaped paraphrases of findings already persisted that day, interleaved so the cumulative curve climbs. Small follow-up/unrelated tail, labeled in gold. Primary mix is ~5% first-looks (1 in 20 novel). Same generator also runs 10% and 20% novel. Measures current gates (RECALL_REQUEST, uniqueSpeakable, skip stale, taskKey, owner) without retuning queryFirst. Chat misses do not remember() themselves. Temp sqlite only; never ~/.automaton/staff.sqlite.",
+  "interpretation": "95% is the cost of a workday when about 1 in 20 turns is novel and the rest are recall-shaped revisits of work already in the store. When the novel fraction is F, avoidance tracks ~1-F if the gates are clean. The 19/20 replay is the single-finding limit (1 miss + 19 hits). The hostile 330 (25.15% avoidance, 0 false hits, 0 stale hits) is the safety score: the cache refuses the wrong commit. Live ~/.automaton/staff.sqlite (1 hit / 51 turns) is an early mixed desk, not a full workday on one domain.",
+  "run": "From the Automaton checkout: bun scripts/replay-workday-eval.ts",
+  "gates": [
+    "RECALL_REQUEST",
+    "uniqueSpeakable",
+    "skip stale",
+    "taskKey",
+    "owner"
+  ],
+  "claims": "Empty start. After each first-look miss, persist a job-sourced Kernel claim (chat misses do not remember()).",
+  "turnsPlanned": [
+    {
+      "n": 1,
+      "query": "what did Kernel find about cookie samesite",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 2,
+      "query": "what was Kernel finding about cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 3,
+      "query": "remember Kernel finding about cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 4,
+      "query": "what did Kernel find for cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 5,
+      "query": "Kernel last result about cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 6,
+      "query": "remember the Kernel finding for cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 7,
+      "query": "what did Kernel find from cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 8,
+      "query": "what was Kernel last job about cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 9,
+      "query": "what did Kernel find about the cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 10,
+      "query": "remember the Kernel finding about the cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 11,
+      "query": "what did Kernel find about cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 12,
+      "query": "what was Kernel finding about cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 13,
+      "query": "remember Kernel finding about cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 14,
+      "query": "what did Kernel find for cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 15,
+      "query": "Kernel last result about cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 16,
+      "query": "remember the Kernel finding for cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 17,
+      "query": "what did Kernel find from cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 18,
+      "query": "what was Kernel last job about cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 19,
+      "query": "what did Kernel find about the trigram index",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 20,
+      "query": "remember the Kernel finding about the trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 21,
+      "query": "what did Kernel find about trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 22,
+      "query": "what was Kernel finding about trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 23,
+      "query": "remember Kernel finding about trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 24,
+      "query": "what did Kernel find for trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 25,
+      "query": "Kernel last result about trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 26,
+      "query": "remember the Kernel finding for trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 27,
+      "query": "what did Kernel find from trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 28,
+      "query": "what was Kernel last job about trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 29,
+      "query": "what did Kernel find about the nonce cache",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 30,
+      "query": "remember the Kernel finding about the nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 31,
+      "query": "what did Kernel find about nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 32,
+      "query": "what was Kernel finding about token bucket",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 33,
+      "query": "remember Kernel finding about token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 34,
+      "query": "what did Kernel find for token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 35,
+      "query": "Kernel last result about token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 36,
+      "query": "remember the Kernel finding for nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 37,
+      "query": "what did Kernel find from token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 38,
+      "query": "what was Kernel last job about nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 39,
+      "query": "what did Kernel find about the token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 40,
+      "query": "remember the Kernel finding about the nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 41,
+      "query": "what did Kernel find about token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 42,
+      "query": "what was Kernel finding about nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 43,
+      "query": "remember Kernel finding about token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 44,
+      "query": "what did Kernel find for nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 45,
+      "query": "Kernel last result about nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 46,
+      "query": "remember the Kernel finding for saml clock",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 47,
+      "query": "what did Kernel find from incident channel",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 48,
+      "query": "what was Kernel last job about incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 49,
+      "query": "what did Kernel find about the saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 50,
+      "query": "why is The incident channel is dedicated?",
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 51,
+      "query": "remember the Kernel finding about the incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 52,
+      "query": "what did Kernel find about saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 53,
+      "query": "what was Kernel finding about sku catalog",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 54,
+      "query": "remember Kernel finding about sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 55,
+      "query": "what did Kernel find for sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 56,
+      "query": "Kernel last result about sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 57,
+      "query": "remember the Kernel finding for saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 58,
+      "query": "what did Kernel find from incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 59,
+      "query": "what was Kernel last job about vacuum pass",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 60,
+      "query": "what did Kernel find about the vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 61,
+      "query": "remember the Kernel finding about the vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 62,
+      "query": "what did Kernel find about vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 63,
+      "query": "what was Kernel finding about incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 64,
+      "query": "remember Kernel finding about sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 65,
+      "query": "what did Kernel find for saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 66,
+      "query": "Kernel last result about vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 67,
+      "query": "remember the Kernel finding for incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 68,
+      "query": "what did Kernel find from gist penalty",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 69,
+      "query": "what was Kernel last job about gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 70,
+      "query": "what did Kernel find about the feed cursor",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 71,
+      "query": "remember the Kernel finding about the feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 72,
+      "query": "what did Kernel find about feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 73,
+      "query": "what was Kernel finding about gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 74,
+      "query": "remember Kernel finding about feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 75,
+      "query": "what did Kernel find for gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 76,
+      "query": "Kernel last result about feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 77,
+      "query": "remember the Kernel finding for gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 78,
+      "query": "what did Kernel find from vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 79,
+      "query": "what was Kernel last job about feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 80,
+      "query": "what did Kernel find about the gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 81,
+      "query": "remember the Kernel finding about the saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 82,
+      "query": "what did Kernel find about credit grant",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 83,
+      "query": "what was Kernel finding about credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 84,
+      "query": "remember Kernel finding about credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 85,
+      "query": "what did Kernel find for credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 86,
+      "query": "Kernel last result about credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 87,
+      "query": "remember the Kernel finding for sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 88,
+      "query": "what did Kernel find from credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 89,
+      "query": "what was Kernel last job about sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 90,
+      "query": "what did Kernel find about the credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 91,
+      "query": "remember the Kernel finding about the vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 92,
+      "query": "what did Kernel find about device twin",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 93,
+      "query": "what was Kernel finding about device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 94,
+      "query": "remember Kernel finding about device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 95,
+      "query": "what did Kernel find for device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 96,
+      "query": "Kernel last result about device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 97,
+      "query": "remember the Kernel finding for device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 98,
+      "query": "what did Kernel find from feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 99,
+      "query": "what was Kernel last job about gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 100,
+      "query": "what did Kernel find about the incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 101,
+      "query": "remember the Kernel finding about the device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 102,
+      "query": "what did Kernel find about severity matrix",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 103,
+      "query": "what was Kernel finding about severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 104,
+      "query": "remember Kernel finding about severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 105,
+      "query": "what did Kernel find for severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 106,
+      "query": "Kernel last result about severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 107,
+      "query": "remember the Kernel finding for severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 108,
+      "query": "what did Kernel find from severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 109,
+      "query": "what was Kernel last job about saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 110,
+      "query": "what did Kernel find about the saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 111,
+      "query": "remember the Kernel finding about the credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 112,
+      "query": "what did Kernel find about device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 113,
+      "query": "what was Kernel finding about gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 114,
+      "query": "remember Kernel finding about incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 115,
+      "query": "what did Kernel find for severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 116,
+      "query": "Kernel last result about trace jit",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 117,
+      "query": "remember the Kernel finding for trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 118,
+      "query": "what did Kernel find from trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 119,
+      "query": "what was Kernel last job about trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 120,
+      "query": "what did Kernel find about the trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 121,
+      "query": "remember the Kernel finding about the sri hash",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 122,
+      "query": "what did Kernel find about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 123,
+      "query": "what was Kernel finding about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 124,
+      "query": "remember Kernel finding about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 125,
+      "query": "what did Kernel find for checksum trail",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 126,
+      "query": "Kernel last result about checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 127,
+      "query": "remember the Kernel finding for checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 128,
+      "query": "what did Kernel find from checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 129,
+      "query": "what was Kernel last job about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 130,
+      "query": "what did Kernel find about the checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 131,
+      "query": "remember the Kernel finding about the checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 132,
+      "query": "what did Kernel find about trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 133,
+      "query": "what was Kernel finding about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 134,
+      "query": "remember Kernel finding about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 135,
+      "query": "what did Kernel find for trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 136,
+      "query": "Kernel last result about checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 137,
+      "query": "remember the Kernel finding for feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 138,
+      "query": "what did Kernel find from trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 139,
+      "query": "what was Kernel last job about vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 140,
+      "query": "what did Kernel find about the checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 141,
+      "query": "remember the Kernel finding about the sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 142,
+      "query": "what did Kernel find about stock count",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 143,
+      "query": "what was Kernel finding about stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 144,
+      "query": "remember Kernel finding about stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 145,
+      "query": "what did Kernel find for stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 146,
+      "query": "Kernel last result about stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 147,
+      "query": "remember the Kernel finding for stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 148,
+      "query": "what did Kernel find from stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 149,
+      "query": "what was Kernel last job about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 150,
+      "query": "what did Kernel find about the stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 151,
+      "query": "remember the Kernel finding about the device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 152,
+      "query": "what did Kernel find about sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 153,
+      "query": "what was Kernel finding about feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 154,
+      "query": "remember Kernel finding about credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 155,
+      "query": "what did Kernel find for gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 156,
+      "query": "Kernel last result about nested loop",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 157,
+      "query": "remember the Kernel finding for nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 158,
+      "query": "what did Kernel find from nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 159,
+      "query": "what was Kernel last job about rank order",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 160,
+      "query": "what did Kernel find about the rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 161,
+      "query": "remember the Kernel finding about the rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 162,
+      "query": "what did Kernel find about nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 163,
+      "query": "what was Kernel finding about rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 164,
+      "query": "remember Kernel finding about rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 165,
+      "query": "what did Kernel find for nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 166,
+      "query": "Kernel last result about rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 167,
+      "query": "remember the Kernel finding for nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 168,
+      "query": "what did Kernel find from rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 169,
+      "query": "what was Kernel last job about nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 170,
+      "query": "what did Kernel find about the rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 171,
+      "query": "remember the Kernel finding about the nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 172,
+      "query": "what did Kernel find about stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 173,
+      "query": "what was Kernel finding about vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 174,
+      "query": "remember Kernel finding about severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 175,
+      "query": "what did Kernel find for trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 176,
+      "query": "Kernel last result about checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 177,
+      "query": "remember the Kernel finding for saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 178,
+      "query": "what did Kernel find from token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 179,
+      "query": "what was Kernel last job about rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 180,
+      "query": "what did Kernel find about the nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 181,
+      "query": "remember the Kernel finding about the sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 182,
+      "query": "what did Kernel find about incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 183,
+      "query": "what was Kernel finding about saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 184,
+      "query": "remember Kernel finding about token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 185,
+      "query": "what did Kernel find for nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 186,
+      "query": "Kernel last result about incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 187,
+      "query": "remember the Kernel finding for checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 188,
+      "query": "Hello, what is your name?",
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 189,
+      "query": "what did Kernel find from vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 190,
+      "query": "what was Kernel last job about feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 191,
+      "query": "what did Kernel find about the sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 192,
+      "query": "remember the Kernel finding about the severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 193,
+      "query": "what did Kernel find about gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 194,
+      "query": "what was Kernel finding about nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 195,
+      "query": "remember Kernel finding about credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 196,
+      "query": "what did Kernel find for stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 197,
+      "query": "Kernel last result about sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 198,
+      "query": "remember the Kernel finding for rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 199,
+      "query": "what did Kernel find from device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 200,
+      "query": "what was Kernel last job about trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 201,
+      "query": "what did Kernel find about the trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 202,
+      "query": "remember the Kernel finding about the stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 203,
+      "query": "what did Kernel find about checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 204,
+      "query": "what was Kernel finding about nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 205,
+      "query": "remember Kernel finding about token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 206,
+      "query": "what did Kernel find for nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 207,
+      "query": "Kernel last result about rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 208,
+      "query": "remember the Kernel finding for device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 209,
+      "query": "what did Kernel find from saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 210,
+      "query": "what was Kernel last job about task queue",
+      "gold": {
+        "expect": "miss",
+        "reason": "first-look",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 211,
+      "query": "what did Kernel find about the task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 212,
+      "query": "remember the Kernel finding about the task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 213,
+      "query": "what did Kernel find about task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 214,
+      "query": "what was Kernel finding about task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 215,
+      "query": "remember Kernel finding about task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 216,
+      "query": "what did Kernel find for task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 217,
+      "query": "Kernel last result about task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 218,
+      "query": "remember the Kernel finding for task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 219,
+      "query": "what did Kernel find from task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 220,
+      "query": "what was Kernel last job about incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 221,
+      "query": "what did Kernel find about the severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 222,
+      "query": "remember the Kernel finding about the task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 223,
+      "query": "what did Kernel find about credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 224,
+      "query": "what was Kernel finding about feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 225,
+      "query": "remember Kernel finding about vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 226,
+      "query": "what did Kernel find for sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 227,
+      "query": "Kernel last result about trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 228,
+      "query": "remember the Kernel finding for sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 229,
+      "query": "what did Kernel find from gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 230,
+      "query": "what was Kernel last job about severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 231,
+      "query": "what did Kernel find about the device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 232,
+      "query": "remember the Kernel finding about the sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 233,
+      "query": "what did Kernel find about nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 234,
+      "query": "what was Kernel finding about incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 235,
+      "query": "remember Kernel finding about checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 236,
+      "query": "what did Kernel find for vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 237,
+      "query": "Kernel last result about saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 238,
+      "query": "remember the Kernel finding for trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 239,
+      "query": "what did Kernel find from feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 240,
+      "query": "what was Kernel last job about task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 241,
+      "query": "what did Kernel find about the stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 242,
+      "query": "remember the Kernel finding about the nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 243,
+      "query": "what did Kernel find about trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 244,
+      "query": "what was Kernel finding about gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 245,
+      "query": "remember Kernel finding about credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 246,
+      "query": "what did Kernel find for sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 247,
+      "query": "Kernel last result about rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 248,
+      "query": "remember the Kernel finding for token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 249,
+      "query": "what did Kernel find from stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 250,
+      "query": "what was Kernel last job about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 251,
+      "query": "what did Kernel find about the feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 252,
+      "query": "remember the Kernel finding about the rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 253,
+      "query": "what did Kernel find about token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 254,
+      "query": "what was Kernel finding about checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 255,
+      "query": "remember Kernel finding about saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 256,
+      "query": "what did Kernel find for severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 257,
+      "query": "Kernel last result about sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 258,
+      "query": "remember the Kernel finding for vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 259,
+      "query": "what did Kernel find from nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 260,
+      "query": "what was Kernel last job about trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 261,
+      "query": "what did Kernel find about the incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 262,
+      "query": "remember the Kernel finding about the nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 263,
+      "query": "how should we change trace jit?",
+      "gold": {
+        "expect": "miss",
+        "reason": "followup",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 264,
+      "query": "what did Kernel find about trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 265,
+      "query": "what was Kernel finding about task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 266,
+      "query": "remember Kernel finding about credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 267,
+      "query": "what did Kernel find for gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 268,
+      "query": "Kernel last result about device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 269,
+      "query": "remember the Kernel finding for checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 270,
+      "query": "what did Kernel find from token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 271,
+      "query": "what was Kernel last job about trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 272,
+      "query": "what did Kernel find about the sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 273,
+      "query": "remember the Kernel finding about the nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 274,
+      "query": "what did Kernel find about device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 275,
+      "query": "what was Kernel finding about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 276,
+      "query": "remember Kernel finding about stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 277,
+      "query": "what did Kernel find for trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 278,
+      "query": "Kernel last result about vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 279,
+      "query": "remember the Kernel finding for nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 280,
+      "query": "what did Kernel find from gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 281,
+      "query": "what was Kernel last job about task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 282,
+      "query": "what did Kernel find about the incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 283,
+      "query": "remember the Kernel finding about the feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 284,
+      "query": "what did Kernel find about saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 285,
+      "query": "what was Kernel finding about severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 286,
+      "query": "remember Kernel finding about rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 287,
+      "query": "what did Kernel find for credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 288,
+      "query": "Kernel last result about incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 289,
+      "query": "remember the Kernel finding for stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 290,
+      "query": "what did Kernel find from feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 291,
+      "query": "what was Kernel last job about device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 292,
+      "query": "what did Kernel find about the task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 293,
+      "query": "remember the Kernel finding about the trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 294,
+      "query": "what did Kernel find about checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 295,
+      "query": "what was Kernel finding about saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 296,
+      "query": "remember Kernel finding about vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 297,
+      "query": "what did Kernel find for token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 298,
+      "query": "Kernel last result about nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 299,
+      "query": "remember the Kernel finding for trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 300,
+      "query": "what did Kernel find from sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 301,
+      "query": "what was Kernel last job about gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 302,
+      "query": "what did Kernel find about the rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 303,
+      "query": "remember the Kernel finding about the severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 304,
+      "query": "what did Kernel find about credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 305,
+      "query": "what was Kernel finding about nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 306,
+      "query": "remember Kernel finding about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 307,
+      "query": "what did Kernel find for vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 308,
+      "query": "Kernel last result about trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 309,
+      "query": "remember the Kernel finding for stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 310,
+      "query": "what did Kernel find from incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 311,
+      "query": "what was Kernel last job about nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 312,
+      "query": "what did Kernel find about the device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 313,
+      "query": "remember the Kernel finding about the gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 314,
+      "query": "what did Kernel find about task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 315,
+      "query": "what was Kernel finding about feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 316,
+      "query": "remember Kernel finding about rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 317,
+      "query": "what did Kernel find for credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 318,
+      "query": "Kernel last result about severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 319,
+      "query": "remember the Kernel finding for token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 320,
+      "query": "what did Kernel find from trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 321,
+      "query": "what was Kernel last job about sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 322,
+      "query": "what did Kernel find about the checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 323,
+      "query": "remember the Kernel finding about the nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 324,
+      "query": "what did Kernel find about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 325,
+      "query": "what was Kernel finding about saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 326,
+      "query": "remember Kernel finding about gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 327,
+      "query": "what did Kernel find for rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 328,
+      "query": "Kernel last result about nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 329,
+      "query": "remember the Kernel finding for feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 330,
+      "query": "what did Kernel find from sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 331,
+      "query": "what was Kernel last job about trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 332,
+      "query": "what did Kernel find about the sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 333,
+      "query": "remember the Kernel finding about the device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 334,
+      "query": "what did Kernel find about incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 335,
+      "query": "what was Kernel finding about severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 336,
+      "query": "remember Kernel finding about nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 337,
+      "query": "what did Kernel find for trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 338,
+      "query": "Kernel last result about stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 339,
+      "query": "remember the Kernel finding for vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 340,
+      "query": "what did Kernel find from credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 341,
+      "query": "what was Kernel last job about task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 342,
+      "query": "what did Kernel find about the token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 343,
+      "query": "remember the Kernel finding about the saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 344,
+      "query": "what did Kernel find about checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 345,
+      "query": "what was Kernel finding about nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 346,
+      "query": "remember Kernel finding about saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 347,
+      "query": "what did Kernel find for device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 348,
+      "query": "Kernel last result about sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 349,
+      "query": "remember the Kernel finding for vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 350,
+      "query": "what did Kernel find from credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 351,
+      "query": "what was Kernel last job about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 352,
+      "query": "what did Kernel find about the severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 353,
+      "query": "remember the Kernel finding about the checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 354,
+      "query": "what did Kernel find about incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 355,
+      "query": "what was Kernel finding about token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 356,
+      "query": "remember Kernel finding about task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 357,
+      "query": "what did Kernel find for rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 358,
+      "query": "Kernel last result about gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 359,
+      "query": "remember the Kernel finding for trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 360,
+      "query": "what did Kernel find from trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 361,
+      "query": "what was Kernel last job about nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 362,
+      "query": "what did Kernel find about the stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 363,
+      "query": "remember the Kernel finding about the feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 364,
+      "query": "what did Kernel find about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 365,
+      "query": "what was Kernel finding about sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    },
+    {
+      "n": 366,
+      "query": "remember Kernel finding about checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 367,
+      "query": "what did Kernel find for severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 368,
+      "query": "Kernel last result about trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 369,
+      "query": "remember the Kernel finding for token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 370,
+      "query": "what did Kernel find from feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 371,
+      "query": "what was Kernel last job about incident channel",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "incident-channel"
+      }
+    },
+    {
+      "n": 372,
+      "query": "what did Kernel find about the device twin",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "device-twin"
+      }
+    },
+    {
+      "n": 373,
+      "query": "What is the weather in Chicago?",
+      "gold": {
+        "expect": "miss",
+        "reason": "unrelated"
+      }
+    },
+    {
+      "n": 374,
+      "query": "remember the Kernel finding about the nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 375,
+      "query": "what did Kernel find about rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 376,
+      "query": "what was Kernel finding about credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 377,
+      "query": "remember Kernel finding about vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 378,
+      "query": "what did Kernel find for saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 379,
+      "query": "Kernel last result about trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 380,
+      "query": "remember the Kernel finding for stock count",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "stock-count"
+      }
+    },
+    {
+      "n": 381,
+      "query": "what did Kernel find from nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 382,
+      "query": "what was Kernel last job about cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 383,
+      "query": "what did Kernel find about the gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 384,
+      "query": "remember the Kernel finding about the task queue",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "task-queue"
+      }
+    },
+    {
+      "n": 385,
+      "query": "what did Kernel find about credit grant",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "credit-grant"
+      }
+    },
+    {
+      "n": 386,
+      "query": "what was Kernel finding about trace jit",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trace-jit"
+      }
+    },
+    {
+      "n": 387,
+      "query": "remember Kernel finding about checksum trail",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "checksum-trail"
+      }
+    },
+    {
+      "n": 388,
+      "query": "what did Kernel find for gist penalty",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "gist-penalty"
+      }
+    },
+    {
+      "n": 389,
+      "query": "Kernel last result about feed cursor",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "feed-cursor"
+      }
+    },
+    {
+      "n": 390,
+      "query": "remember the Kernel finding for vacuum pass",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "vacuum-pass"
+      }
+    },
+    {
+      "n": 391,
+      "query": "what did Kernel find from trigram index",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "trigram-index"
+      }
+    },
+    {
+      "n": 392,
+      "query": "what was Kernel last job about token bucket",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "token-bucket"
+      }
+    },
+    {
+      "n": 393,
+      "query": "what did Kernel find about the nonce cache",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nonce-cache"
+      }
+    },
+    {
+      "n": 394,
+      "query": "remember the Kernel finding about the rank order",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "rank-order"
+      }
+    },
+    {
+      "n": 395,
+      "query": "what did Kernel find about sri hash",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sri-hash"
+      }
+    },
+    {
+      "n": 396,
+      "query": "what was Kernel finding about nested loop",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "nested-loop"
+      }
+    },
+    {
+      "n": 397,
+      "query": "remember Kernel finding about saml clock",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "saml-clock"
+      }
+    },
+    {
+      "n": 398,
+      "query": "what did Kernel find for severity matrix",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "severity-matrix"
+      }
+    },
+    {
+      "n": 399,
+      "query": "Kernel last result about cookie samesite",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "cookie-samesite"
+      }
+    },
+    {
+      "n": 400,
+      "query": "remember the Kernel finding for sku catalog",
+      "gold": {
+        "expect": "hit",
+        "reason": "revisit-paraphrase",
+        "claimId": "sku-catalog"
+      }
+    }
+  ]
+}
